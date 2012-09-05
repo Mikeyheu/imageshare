@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120905200230) do
+ActiveRecord::Schema.define(:version => 20120905202056) do
+
+  create_table "collections", :force => true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.integer  "site_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "sites", :force => true do |t|
     t.string   "name"

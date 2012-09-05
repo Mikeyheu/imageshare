@@ -1,5 +1,7 @@
 Imageshare::Application.routes.draw do
 
+  resources :collections
+
   resources :sites
 
   devise_for :users
