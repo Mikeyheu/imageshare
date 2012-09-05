@@ -1,6 +1,7 @@
 class SitesController < ApplicationController
-  # GET /sites
-  # GET /sites.json
+
+  before_filter :get_user
+
   def index
     @sites = Site.all
 
@@ -10,10 +11,13 @@ class SitesController < ApplicationController
     end
   end
 
-  # GET /sites/1
-  # GET /sites/1.json
   def show
-    @site = Site.find(params[:id])
+    if current_user
+      @site = @user.sites.find(params[:id])
+    else
+      # @site = Site.find(params[:id])
+      @site = Site.find_by_slug!(request.subdomain)
+    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -21,8 +25,6 @@ class SitesController < ApplicationController
     end
   end
 
-  # GET /sites/new
-  # GET /sites/new.json
   def new
     @site = Site.new
 
@@ -32,15 +34,18 @@ class SitesController < ApplicationController
     end
   end
 
-  # GET /sites/1/edit
+
   def edit
-    @site = Site.find(params[:id])
+    @site = @user.sites.find(params[:id])
   end
 
-  # POST /sites
-  # POST /sites.json
+
   def create
-    @site = Site.new(params[:site])
+
+
+    # @site = Site.new(params[:site])
+
+    @site = @user.sites.build(params[:site])
 
     respond_to do |format|
       if @site.save
@@ -53,10 +58,9 @@ class SitesController < ApplicationController
     end
   end
 
-  # PUT /sites/1
-  # PUT /sites/1.json
+
   def update
-    @site = Site.find(params[:id])
+    @site = @user.sites.find(params[:id])
 
     respond_to do |format|
       if @site.update_attributes(params[:site])
@@ -69,10 +73,9 @@ class SitesController < ApplicationController
     end
   end
 
-  # DELETE /sites/1
-  # DELETE /sites/1.json
+
   def destroy
-    @site = Site.find(params[:id])
+    @site = @user.sites.find(params[:id])
     @site.destroy
 
     respond_to do |format|
@@ -80,4 +83,11 @@ class SitesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+  def get_user
+    @user = current_user
+  end
+  
 end
