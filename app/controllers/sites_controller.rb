@@ -12,12 +12,14 @@ class SitesController < ApplicationController
   end
 
   def show
-    if current_user
-      @site = @user.sites.find(params[:id])
-    else
-      # @site = Site.find(params[:id])
-      @site = Site.find_by_slug!(request.subdomain)
-    end
+
+    @site = Site.find(params[:id])
+    # if current_user
+    #   @site = @user.sites.find(params[:id])
+    # else
+    #   # @site = Site.find(params[:id])
+    #   @site = Site.find_by_slug!(request.subdomain)
+    # end
 
     respond_to do |format|
       format.html # show.html.erb

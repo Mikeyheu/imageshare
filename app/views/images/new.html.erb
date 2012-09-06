@@ -1,5 +1,35 @@
-<h1>New image</h1>
+<h1>Upload Images for <%= @collection.name %></h1>
 
-<%= render 'form' %>
+<%= form_for [@collection, @image], :remote => true do %>
 
-<%= link_to 'Back', images_path %>
+	<p id="notice"><%= notice %></p>
+
+		Upload Photos: 
+		<input id="fileupload" type="file" name="image[image_file]" multiple>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script src="/jquery-file-upload/vendor/jquery.ui.widget.js"></script>
+		<script src="/jquery-file-upload/jquery.iframe-transport.js"></script>
+		<script src="/jquery-file-upload/jquery.fileupload.js"></script>
+		<script>
+		$(function () {
+		    $('#fileupload').fileupload({
+		        dataType: 'json',
+		        url: '<%= collection_images_path(@collection.id) %>',
+		        done: function (e, data) {
+		            $.each(data.result, function (index, file) { 
+		               $('<li><img src="'+file.thumbnail_url+'"></li>').appendTo('#thumbs');
+		            });
+		        }
+		    });
+		});
+		</script>
+
+		</br>
+		<%= link_to 'View Collection', collection_path(@collection) %>
+		</br>
+	
+		<ul id="thumbs" class="cf">
+	<!-- json-ajax response here, see fileupload script above, .appendTo css id:"thumbs"-->
+		</ul>
+<% end %>
+

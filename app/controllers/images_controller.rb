@@ -1,6 +1,7 @@
 class ImagesController < ApplicationController
-  # GET /images
-  # GET /images.json
+
+  before_filter :get_collection
+
   def index
     @images = Image.all
 
@@ -10,8 +11,7 @@ class ImagesController < ApplicationController
     end
   end
 
-  # GET /images/1
-  # GET /images/1.json
+
   def show
     @image = Image.find(params[:id])
 
@@ -21,8 +21,7 @@ class ImagesController < ApplicationController
     end
   end
 
-  # GET /images/new
-  # GET /images/new.json
+
   def new
     @image = Image.new
 
@@ -32,29 +31,23 @@ class ImagesController < ApplicationController
     end
   end
 
-  # GET /images/1/edit
+
   def edit
     @image = Image.find(params[:id])
   end
 
-  # POST /images
-  # POST /images.json
-  def create
-    @image = Image.new(params[:image])
 
-    respond_to do |format|
-      if @image.save
-        format.html { redirect_to @image, notice: 'Image was successfully created.' }
-        format.json { render json: @image, status: :created, location: @image }
-      else
-        format.html { render action: "new" }
+  def create
+    @image = @collection.images.new(params[:image])
+
+
+      if !@image.save
         format.json { render json: @image.errors, status: :unprocessable_entity }
       end
-    end
+
   end
 
-  # PUT /images/1
-  # PUT /images/1.json
+
   def update
     @image = Image.find(params[:id])
 
@@ -69,8 +62,7 @@ class ImagesController < ApplicationController
     end
   end
 
-  # DELETE /images/1
-  # DELETE /images/1.json
+
   def destroy
     @image = Image.find(params[:id])
     @image.destroy
@@ -80,4 +72,11 @@ class ImagesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+  def get_collection
+    @collection = Collection.find(params[:collection_id])
+  end
+
 end
