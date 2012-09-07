@@ -1,6 +1,6 @@
 class Site < ActiveRecord::Base
   belongs_to :user
-  has_many :collections
+  has_many :collections, :dependent => :destroy
 
   extend FriendlyId
   friendly_id :name, use: :slugged
