@@ -1,15 +1,5 @@
 # encoding: utf-8
 
-CarrierWave.configure do |config|
-    config.fog_credentials = {
-      :provider               => 'AWS',
-      :aws_access_key_id      => 'xxx',
-      :aws_secret_access_key  => 'xxx'
-    }
-    config.fog_directory  = 'mheu-imageshare'
-end
-
-
 class ImageFileUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
@@ -21,8 +11,8 @@ class ImageFileUploader < CarrierWave::Uploader::Base
   # include Sprockets::Helpers::IsolatedHelper
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
-  # storage :fog
+  # storage :file
+  storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
