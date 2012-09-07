@@ -10,7 +10,18 @@
 		    $('#fileupload').fileupload({
 		        dataType: 'json',
 		        url: '<%= collection_images_path(@collection) %>',
+		        start: function (e) {
+		        	$('#upload_tracker').show();
+
+		        },
+		        // done: function (e, data) {
+		        // 	$.each(data.result, function (index, file) {
+
+		        // 	}
+
+		        // },
 		        stop: function (e) {
+		        	$('#upload_tracker').hide();
 		            location.reload();
 		        }
 		    });
