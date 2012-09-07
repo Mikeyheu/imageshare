@@ -36,16 +36,13 @@ textarea {
   margin-bottom: 10px;
 }
 
-ul {
-  float: left;
-  list-style-type: none;
-}
-
-ul li {
-  float: left;
-}
-
 /* typography */
+
+.hero-unit {
+  h1 {
+    text-align: center;
+  }
+}
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
@@ -214,4 +211,6 @@ input, textarea, select, .uneditable-input {
   width:120px;
 
 }
+
+
 
