@@ -7,7 +7,7 @@
 		<%= link_to "Back", site_path(@collection.site) %>
 		<% if current_user==@collection.site.user %>
 			<%= render 'upload' %>
-			<div id="upload_tracker">Uploading Files. Please wait.</div>
+			<div id="upload_tracker"></div>
 		<% end %>
 	</div>
   <div class="span9">

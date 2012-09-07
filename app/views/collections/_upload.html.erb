@@ -11,7 +11,7 @@
 		        dataType: 'json',
 		        url: '<%= collection_images_path(@collection) %>',
 		        start: function (e) {
-		        	$('#upload_tracker').show();
+		        	$('#upload_tracker').html('Upload in progress. Please wait.');
 
 		        },
 		        // done: function (e, data) {
@@ -21,7 +21,6 @@
 
 		        // },
 		        stop: function (e) {
-		        	$('#upload_tracker').hide();
 		            location.reload();
 		        }
 		    });
