@@ -2,16 +2,6 @@ class ImagesController < ApplicationController
 
   before_filter :get_collection
 
-  def index
-    @images = Image.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @images }
-    end
-  end
-
-
   def show
     @image = Image.find(params[:id])
 
@@ -20,7 +10,6 @@ class ImagesController < ApplicationController
       format.json { render json: @image }
     end
   end
-
 
   def new
     @image = Image.new
@@ -31,11 +20,9 @@ class ImagesController < ApplicationController
     end
   end
 
-
   def edit
     @image = Image.find(params[:id])
   end
-
 
   def create
     @image = @collection.images.new(params[:image])
@@ -47,13 +34,12 @@ class ImagesController < ApplicationController
 
   end
 
-
   def update
     @image = Image.find(params[:id])
 
     respond_to do |format|
       if @image.update_attributes(params[:image])
-        format.html { redirect_to @image, notice: 'Image was successfully updated.' }
+        format.html { redirect_to collection_image_path(@collection, @image), notice: 'Image was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -62,13 +48,12 @@ class ImagesController < ApplicationController
     end
   end
 
-
   def destroy
     @image = Image.find(params[:id])
     @image.destroy
 
     respond_to do |format|
-      format.html { redirect_to images_url }
+      format.html { redirect_to site_collection_path(@collection.site, @collection) }
       format.json { head :no_content }
     end
   end

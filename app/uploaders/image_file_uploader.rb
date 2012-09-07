@@ -1,5 +1,15 @@
 # encoding: utf-8
 
+CarrierWave.configure do |config|
+    config.fog_credentials = {
+      :provider               => 'AWS',
+      :aws_access_key_id      => 'xxx',
+      :aws_secret_access_key  => 'xxx'
+    }
+    config.fog_directory  = 'mheu-imageshare'
+end
+
+
 class ImageFileUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:

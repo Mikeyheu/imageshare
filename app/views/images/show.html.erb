@@ -1,22 +1,21 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @image.name %>
-</p>
+<h1>Image</h1>
 
-<p>
-  <b>Description:</b>
-  <%= @image.description %>
-</p>
+<div class="row">
+	<div class="span3">
+		<%= link_to "Back", site_collection_path(@collection.site, @collection) %>
+	</div>
+  <div class="span9">
+		<%= image_tag @image.image_file_url(:medium).to_s %>
+		<p>
+		  <b>Title:</b>
+		  <%= @image.name %>
+		</p>
+		<p>
+		  <b>Description:</b>
+		  <%= @image.description %>
+		</p>
+	</div>
+</div>
 
-<p>
-  <b>Collection:</b>
-  <%= @image.collection_id %>
-</p>
-
-<%= image_tag @image.image_file_url(:medium).to_s %>
-
-
-<%= link_to 'Edit', edit_image_path(@image) %> |
-<%= link_to 'Back', images_path %>

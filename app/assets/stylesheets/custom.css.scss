@@ -36,6 +36,15 @@ textarea {
   margin-bottom: 10px;
 }
 
+ul {
+  float: left;
+  list-style-type: none;
+}
+
+ul li {
+  float: left;
+}
+
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -46,7 +55,7 @@ h1 {
   font-size: 2em;
   letter-spacing: -1px;
   margin-bottom: 15px;
-  text-align: center;
+  text-align: left;
 }
 
 h2 {
@@ -185,7 +194,7 @@ input, textarea, select, .uneditable-input {
 
 .grid {
   float:left;
-  margin-top:20px;
+  margin-bottom:20px;
   position: relative;
   width:140px;
   height:160px;
@@ -200,6 +209,7 @@ input, textarea, select, .uneditable-input {
 
 .portfolio_title {
   position: relative;
+  text-align: center;
   top:10px;
   width:120px;
 

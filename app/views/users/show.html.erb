@@ -1,15 +1,18 @@
 <h1><%= @user.name %></h1>
-<p>Email: <%= @user.email %></p>
-<%= link_to 'Edit', edit_user_registration_path %> |
-<%= link_to 'List of Users', users_path %>
-<h3><%= @user.name %>'s Sites</h3>
-<table>
-<% @user.sites.each do |site| %>
-  <tr>
-    <td><%= link_to site.name, site %></td>
-    <td><%= link_to 'Edit', edit_site_path(site) %></td>
-    <td><%= link_to 'Destroy', site, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+<p>Email: <%= @user.email %>
+
+<% if current_user==@user %>
+<p><%= link_to '<i class="icon-plus-sign"></i> Create a new Site'.html_safe, new_site_path %></p>
 <% end %>
-</table>
+
+
+<p>Current User Sites:</br></p>
+<% @user.sites.each do |site| %>
+<%= link_to site.name, site %>
+<% if current_user==@user %>
+| <%= link_to '<i class="icon-remove"></i> Delete'.html_safe, site, method: :delete, data: { confirm: 'Are you sure?' } %> </br>
+<% end %>
+
+<% end %>
+
 <br />

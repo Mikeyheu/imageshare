@@ -1,19 +1,37 @@
 <p id="notice"><%= notice %></p>
 
-<h1><%= @site.name %></h1>
-
-<%= link_to 'Edit', edit_site_path(@site) %> |
-<%= link_to 'Back', sites_path %>
-
+<h1>Collections</h1>
 
 <div class="row">
-  <div class="span12">
+	<div class="span3">
+		<% if current_user==@site.user %>
+			<%= link_to '<i class="icon-plus-sign"></i> Add New Collection'.html_safe, new_site_collection_path(@site) %></br></br>
+		<% end %>
+		<% if @site.collections.any? %>
+			<%  @site.collections.each do |collection| %>
+				<%= link_to collection.name, site_collection_path(@site,collection) %> 
+				<% if current_user==@site.user %> 
+				| <%= link_to '<i class="icon-remove"></i> Delete'.html_safe, site_collection_path(@site,collection), method: :delete, data: { confirm: 'Are you sure?' } %> 
+				<% end %>
+				</br>
+			<% end %>
+		<% end %>
+
+	</div>
+
+  <div class="span9">
   	<% if @site.collections.any? %>
 		<%  @site.collections.each do |collection| %>
 			<div class="grid">
+				<% if collection.images.any? %>
 				<div class="portfolio_image">
-					<%= link_to(image_tag(collection.images[0].image_file_url(:thumb).to_s), collection_path(collection)) %>
+					<%= link_to(image_tag(collection.images[0].image_file_url(:thumb).to_s), site_collection_path(@site,collection)) %>
 				</div>
+				<% end %>
+				<div class="portfolio_title">
+					<%= link_to collection.name, site_collection_path(@site,collection) %>
+				</div>
+				
 			</div>
 		<% end %>
 	<% end %>

@@ -2,6 +2,7 @@ class Collection < ActiveRecord::Base
   belongs_to :site
   has_many :images, :dependent => :destroy
 
+
   extend FriendlyId
   friendly_id :name, use: :slugged
 

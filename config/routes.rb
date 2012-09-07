@@ -5,11 +5,12 @@ Imageshare::Application.routes.draw do
   resources :users, :only => [:index, :show]
   root :to => "home#index"
   
-  resources :collections do #nest images under collections
+  resources :collections do  #nest images under collections
   	resources :images
   end
 
-  resources :sites
-
+  resources :sites do
+  	  resources :collections
+  end
 
 end

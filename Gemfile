@@ -12,6 +12,7 @@ gem 'jquery-rails'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'jbuilder'
+gem 'fog'
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'

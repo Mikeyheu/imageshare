@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 
   has_many :sites,   :dependent => :destroy
-  has_many :collections,  :dependent => :destroy
+  has_many :collections,  :through => :sites
 
 
   extend FriendlyId

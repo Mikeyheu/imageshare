@@ -14,6 +14,7 @@ class SitesController < ApplicationController
   def show
 
     @site = Site.find(params[:id])
+    @collection = Collection.new
     # if current_user
     #   @site = @user.sites.find(params[:id])
     # else
@@ -81,7 +82,7 @@ class SitesController < ApplicationController
     @site.destroy
 
     respond_to do |format|
-      format.html { redirect_to sites_url }
+      format.html { redirect_to user_path(@user) }
       format.json { head :no_content }
     end
   end
