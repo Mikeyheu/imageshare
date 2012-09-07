@@ -1,6 +1,6 @@
 Imageshare::Application.routes.draw do
 
-  match '', to: 'sites#show', constraints: {subdomain: /.+/}
+  # match '', to: 'sites#show', constraints: {subdomain: /.+/}
   devise_for :users
   resources :users, :only => [:index, :show]
   root :to => "home#index"
