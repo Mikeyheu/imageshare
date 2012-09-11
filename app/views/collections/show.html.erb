@@ -2,6 +2,8 @@
 
 <h1><%= @collection.name %></h1>
 
+<%= render 'images/modal' %>
+
 <div class="row">
 	<div class="span3">
 		<%= link_to "Back", site_path(@collection.site) %>
@@ -18,6 +20,7 @@
 				</div>
 				<div class="portfolio_title">
 					<% if current_user==@collection.site.user %>
+					<%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_collection_image_path(@collection, image), {:remote => true, 'data-toggle' => 'modal', 'data-target' => "#myModal"} %> |
 					<%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_collection_image_path(@collection, image) %> | 
 					<%= link_to '<i class="icon-remove"></i>'.html_safe, collection_image_path(@collection, image), method: :delete, data: { confirm: 'Are you sure?' } %>
 					<% end %>
@@ -26,6 +29,8 @@
 		<% end %>
 	</div>
 </div>
+
+
 
 
 

@@ -40,10 +40,12 @@ class ImagesController < ApplicationController
     respond_to do |format|
       if @image.update_attributes(params[:image])
         format.html { redirect_to collection_image_path(@collection, @image), notice: 'Image was successfully updated.' }
-        format.json { head :no_content }
+        format.js
+        # format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @image.errors, status: :unprocessable_entity }
+        # format.json { render json: @image.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
