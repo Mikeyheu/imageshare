@@ -39,7 +39,7 @@ class ImagesController < ApplicationController
 
     respond_to do |format|
       if @image.update_attributes(params[:image])
-        format.html { redirect_to collection_image_path(@collection, @image), notice: 'Image was successfully updated.' }
+        format.html { redirect_to site_collection_path(@collection.site, @collection), notice: 'Image was successfully updated.' }
         format.js
         # format.json { head :no_content }
       else
