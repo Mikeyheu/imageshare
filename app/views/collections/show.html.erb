@@ -12,21 +12,23 @@
 			<div id="upload_tracker"></div>
 		<% end %>
 	</div>
-  <div class="span9">
-		<%  @collection.images.each do |image| %>
-			<div class="grid">
-				<div class="portfolio_image">
-					<%= link_to(image_tag(image.image_file_url(:thumb).to_s), collection_image_path(@collection, image)) %>
+  <div id="sortable" class="span9">
+	  	
+			<%  @collection.images.each do |image| %>
+
+				<div id="image_<%= image.id %>" class="grid">
+						<div class="portfolio_image">
+							<%= link_to(image_tag(image.image_file_url(:thumb).to_s), collection_image_path(@collection, image)) %>
+						</div>
+						<div class="portfolio_title">
+							<% if current_user==@collection.site.user %>
+							<%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_collection_image_path(@collection, image), {:remote => true, 'data-toggle' => 'modal', 'data-target' => "#myModal", 'data-backdrop' => false} %> | 
+							<%= link_to '<i class="icon-remove"></i>'.html_safe, collection_image_path(@collection, image), method: :delete, data: { confirm: 'Are you sure?' } %>
+							<% end %>
+						</div>
 				</div>
-				<div class="portfolio_title">
-					<% if current_user==@collection.site.user %>
-					<%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_collection_image_path(@collection, image), {:remote => true, 'data-toggle' => 'modal', 'data-target' => "#myModal", 'data-backdrop' => false} %> |
-					<%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_collection_image_path(@collection, image) %> | 
-					<%= link_to '<i class="icon-remove"></i>'.html_safe, collection_image_path(@collection, image), method: :delete, data: { confirm: 'Are you sure?' } %>
-					<% end %>
-				</div>
-			</div>
-		<% end %>
+			<% end %>
+		
 	</div>
 </div>
 
