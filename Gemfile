@@ -13,6 +13,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'jbuilder'
 gem 'fog'
+gem "acts_as_list"
 
 group :development, :test do
   gem 'pg'

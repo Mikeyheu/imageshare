@@ -1,6 +1,6 @@
 class Collection < ActiveRecord::Base
   belongs_to :site
-  has_many :images, :dependent => :destroy
+  has_many :images, :order => "position", :dependent => :destroy
 
 
   extend FriendlyId

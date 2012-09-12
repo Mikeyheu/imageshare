@@ -12,7 +12,7 @@
 			<div id="upload_tracker"></div>
 		<% end %>
 	</div>
-  <div id="sortable" class="span9">
+  <div id="sortable" class="span9" data-update-url="<%= sort_collection_images_path(@collection) %>">
 	  	
 			<%  @collection.images.each do |image| %>
 

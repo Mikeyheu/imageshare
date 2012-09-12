@@ -1,3 +1,9 @@
 jQuery(function($) {
-   $('#sortable').sortable();
+   $('#sortable').sortable({
+   		update: function(){
+			$.post($(this).data('update-url'), $(this).sortable('serialize'))
+		}
+	});
 });
+
+

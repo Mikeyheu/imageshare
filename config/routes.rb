@@ -6,11 +6,17 @@ Imageshare::Application.routes.draw do
   root :to => "home#index"
   
   resources :collections do  #nest images under collections
-  	resources :images
+
+  	resources :images do
+      post :sort, on: :collection
+  end
   end
 
   resources :sites do
-  	  resources :collections
+  	  resources :collections 
+
   end
+
+
 
 end
